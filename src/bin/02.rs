@@ -15,7 +15,7 @@ fn parse_input_to_games(input: &str) -> Vec<Game> {
     let games: Vec<Game> = input
         .lines()
         .map(|line| {
-            let (game_info, rounds_info) = line.split_at(line.find(": ").unwrap());
+            let (game_info, rounds_info) = line.split_once(": ").unwrap_or_default();
 
             let game_id = game_info
                 .replace("Game ", "")
