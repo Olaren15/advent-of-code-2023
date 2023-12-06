@@ -117,35 +117,7 @@ pub fn part_one(input: &str) -> Option<u64> {
 }
 
 pub fn part_two(input: &str) -> Option<u64> {
-    let almanac = Almanac::from_input(input);
-
-    let mut locations: Vec<u64> = vec![];
-
-    let mut seed_number_iter = almanac.seeds.iter();
-    while let (Some(&start), Some(&length)) = (seed_number_iter.next(), seed_number_iter.next()) {
-        let range: Vec<u64> = (start..start + length).collect();
-
-        let soils = translate_numbers(&range, &almanac.seed_to_soil);
-        let fertilizer = translate_numbers(&soils, &almanac.soil_to_fertilizer);
-        drop(soils);
-        let water = translate_numbers(&fertilizer, &almanac.fertilizer_to_water);
-        drop(fertilizer);
-        let light = translate_numbers(&water, &almanac.water_to_light);
-        drop(water);
-        let temperature = translate_numbers(&light, &almanac.light_to_temperature);
-        drop(light);
-        let humidity = translate_numbers(&temperature, &almanac.temperature_to_humidity);
-        drop(temperature);
-        let location = translate_numbers(&humidity, &almanac.humidity_to_location);
-        drop(humidity);
-
-        let closest_location = location.iter().min().unwrap();
-        locations.push(*closest_location);
-    }
-
-    let closest_location = locations.iter().min().unwrap();
-
-    Some(*closest_location)
+    None
 }
 
 #[cfg(test)]
